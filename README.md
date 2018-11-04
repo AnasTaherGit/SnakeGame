@@ -1,4 +1,4 @@
-# Snack Game
+## Snack Game
 # How to play it ?
 First,make sure you have the python launcher installed.<br/>
 Then launch the main.py script in src folder <br/>
