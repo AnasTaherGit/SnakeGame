@@ -1,6 +1,6 @@
-#Snack Game
-#How to play it ?
-first,make sure you have the python launcher installed.
+# Snack Game
+# How to play it ?
+first,make sure you have the python launcher installed.\n
 Then launch the main.py script in src folder 
 Once launched, the game will begin automatically 
 if you hit the wall you lose.
