@@ -39,6 +39,7 @@ class SnackGame(Tk):
             # self.after(1500, self.restart)
         else:
             self.after(self.h, self.start)
+            print("Continue")
 
     def restart(self, event):
         touche = event.keysym
