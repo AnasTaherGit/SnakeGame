@@ -35,8 +35,8 @@ class Snack():
                 self.d = 'l'
 
     def update(self):
-        # print(self.d)
-        if len(self.snack) > 1:
+        #print(self.d)
+        if len(self.snack) >= 1:
             past_x = self.snack[0].x
             past_y = self.snack[0].y
             if self.d == 'r':
