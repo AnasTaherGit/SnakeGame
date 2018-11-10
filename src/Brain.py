@@ -29,6 +29,11 @@ def pick(seq, k=2):
     return picked
 
 
+def fitness(score, dist, moves):
+
+    return (score + 1) / ((dist * moves)**2 + 1)
+
+
 class Brain():
     def __init__(self, n_inputs, n_hiddens, n_outputs, mutationRate):
         self.NbInputs = n_inputs
@@ -48,13 +53,16 @@ class Brain():
         self.WeightOutputs = np.random.random((self.NbOutputs, self.NbHiddens))
 
     def CrossOver(self, other):
-        child = Brain(self.NbInputs, self.NbHiddens, self.NbOutputs, self.mutationRate)
+        child = Brain(self.NbInputs, self.NbHiddens,
+                      self.NbOutputs, self.mutationRate)
         for i in range(self.NbHiddens):
             for j in range(0, self.NbInputs):
-                child.WeightHidden[i][j] = choice([self.WeightHidden[i][j], other.WeightHidden[i][j]])
+                child.WeightHidden[i][j] = choice(
+                    [self.WeightHidden[i][j], other.WeightHidden[i][j]])
         for i in range(self.NbOutputs):
             for j in range(0, self.NbHiddens):
-                child.WeightOutputs[i][j] = choice([self.WeightOutputs[i][j], other.WeightOutputs[i][j]])
+                child.WeightOutputs[i][j] = choice(
+                    [self.WeightOutputs[i][j], other.WeightOutputs[i][j]])
 
         return child
 
@@ -79,10 +87,13 @@ class Population():
         self.size = size
         self.population = [0] * size
         self.mutationRate = mutationRate
+        self.generation = 1
+        print("Generation :", self.generation)
 
     def initialize(self):
         for i in range(self.size):
-            self.population[i] = Brain(self.n_inputs, self.n_hiddens, self.n_outputs, self.mutationRate)
+            self.population[i] = Brain(
+                self.n_inputs, self.n_hiddens, self.n_outputs, self.mutationRate)
             self.population[i].randomize()
 
     def Reproduction(self):
@@ -93,6 +104,8 @@ class Population():
             self.population.append(child)
         for loop in range(self.size):
             del self.population[loop]
+        self.generation += 1
+        print("Generation :", self.generation)
 
     def mutation(self):
         for b in self.population:
